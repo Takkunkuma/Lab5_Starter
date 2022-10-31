@@ -42,6 +42,12 @@ function init() {
 
   talkButt.addEventListener('click', function(){
     const phrase1 = new SpeechSynthesisUtterance(talk.value)
+    const selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    for (let i = 0; i < voices.length ; i++) {
+      if (voices[i].name === selectedOption) {
+        phrase1.voice = voices[i];
+      }
+    }
     speech.speak(phrase1);
     setInterval(function(){
       const speaking = speech.speaking
